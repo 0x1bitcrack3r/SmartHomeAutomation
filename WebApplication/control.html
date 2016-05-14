@@ -1,0 +1,393 @@
+<html>
+<head>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="js/genr.js"></script>-->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- load MUI -->
+    <link href="mui-0.4.8/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="mui-0.4.8/js/mui.min.js"></script>
+
+    <link rel="stylesheet" href="mdl/material.min.css">
+    <script src="mdl/material.min.js"></script>
+   <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+
+    <style>
+        .demo-list-two {
+        width: 300px;
+        }
+
+        #wrapper {
+        margin-right: 200px;
+        }
+        #content {
+        float: left;
+        width: 100%;
+
+        }
+        #sidebar {
+        float: right;
+        width: 100%;
+        margin-right: 10px;
+
+        }
+        #cleared {
+        clear: both;
+        }
+        .column-left{ float: left; width: 33%; }
+        .column-right{ float: right; width: 33%; }
+        .column-center{ display: inline-block; width: 33%; }
+    </style>
+
+    <script>
+function ajax_post_On(){
+   
+   
+    var hr = new XMLHttpRequest();
+    // Create some variables we need to send to our PHP file
+    var url = "http://IP address of raspberry pi/relay1_On.php";
+     
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.send();
+}
+function ajax_post_Off(){
+   
+    
+    var hr = new XMLHttpRequest();
+    // Create some variables we need to send to our PHP file
+    var url = "http://IP address of raspberry pi/relay1_Off.php";
+     
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.send();
+}
+
+function ajax_post_On1(){
+
+    var hr = new XMLHttpRequest();
+    // Create some variables we need to send to our PHP file
+    var url = "http://IP address of raspberry pi/fanon.php";
+     
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.send();
+}
+function ajax_post_Off1(){
+  
+    var hr = new XMLHttpRequest();
+    // Create some variables we need to send to our PHP file
+    var url = "http://IP address of raspberry pi/fanoff.php";
+     
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.send();
+}
+function ajax_post_SensorOn(){
+
+    var hr = new XMLHttpRequest();
+    // Create some variables we need to send to our PHP file
+    var url = "http://IP address of raspberry pi/sensoron.php";
+     
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.send();
+}
+function ajax_post_SensorOff(){
+   
+    var hr = new XMLHttpRequest();
+    // Create some variables we need to send to our PHP file
+    var url = "http://IP address of raspberry pi/sensoroff.php";
+     
+    hr.open("POST", url, true);
+    hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    hr.send();
+}
+function loadDoc(){
+	
+	  	var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){ //display the content of insert.php once successfully loaded
+			if(xmlhttp.readyState==4&&xmlhttp.status==200){
+				//console.log(xmlhttp.responseText);
+				document.getElementById('comment_logs').innerHTML = xmlhttp.responseText; //the chatlogs from the db will be displayed inside the div section
+			}
+		};
+		xmlhttp.open("GET","http://IP address of raspberry pi/sensorfetchdb.php",true);
+		
+		xmlhttp.send();
+		}	
+		
+		function newsFeed(){
+		 
+    
+     //important, otherwise its not working
+   
+
+	 //http request instance
+	//alert("hello world");
+	  	var xmlhttp = new XMLHttpRequest();
+	 
+		xmlhttp.onreadystatechange = function(){ //display the content of insert.php once successfully loaded
+			if(xmlhttp.readyState==4&&xmlhttp.status==200){
+				//console.log(xmlhttp.responseText);
+				document.getElementById('feeds').innerHTML = xmlhttp.responseText; //the chatlogs from the db will be displayed inside the div section
+			}
+		};
+		xmlhttp.open("GET","http://techcrunch.com/topic/subject/internet-of-things",true);
+		
+		xmlhttp.send();
+		
+		}	
+
+
+
+var val=false;
+function toggle_visibility() {
+  
+    if (val) {
+    ajax_post_Off();
+    val=false;
+    }
+    else {
+    ajax_post_On();
+    val=true;
+    }
+   
+}
+
+
+
+
+var val1=false;
+function toggle_visibility1() {
+  
+    if (val1) {
+    ajax_post_Off1();
+    val1=false;
+    }
+    else {
+    ajax_post_On1();
+    val1=true;
+    }
+   
+}
+
+
+var val2=false;
+function toggle_visibility2() {
+  
+    if (val2) {
+    ajax_post_SensorOff();
+    val2=false;
+    }
+    else {
+    ajax_post_SensorOn();
+    val2=true;
+    }
+   
+}
+
+
+	
+    </script>
+    <style>
+      h1{
+	font-size:16px;
+	font-family:Verdana, Geneva, sans-serif;
+	color:#4040E6;
+	padding-bottom:0px;
+	margin-bottom:0px;
+}
+h2{
+	font-size:10px;
+	font-family:Verdana, Geneva, sans-serif;
+	color:#000000;
+}
+.comments_content{
+	margin:10px;
+	padding:5px;
+	border:1px solid #CCC;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+    </style>
+</head>
+<body onload="loadDoc();">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+            mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Home</span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Appliances</a>
+            <a href="#fixed-tab-2" class="mdl-layout__tab">Monitor</a>
+            <a href="#fixed-tab-3" class="mdl-layout__tab">Feeds</a>
+        </div>
+    </header>
+
+    <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+
+
+            <div class="container">
+                <div class="mdl-card__actions mdl-card--border">
+                    <div class="column-left">
+                        <h style="font-weight: bold;padding-left: -20px;padding-top: 50px;">Light</h>
+                    </div>
+                    <div class="column-center">
+                        <!--<button  onclick="ajax_post_On();"  class="mui-btn mui-btn--primary mui-btn--raised">
+                            On
+                        </button></div>
+                    <div class="column-right">
+                        <button  onclick="ajax_post_Off();" type="button" class="mui-btn mui-btn--danger mui-btn--raised">
+                            Off
+                        </button>-->
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" >
+                    <input type="checkbox" id="myButton" onclick="toggle_visibility();"   value="off" class="mdl-switch__input">
+                     <span class="mdl-switch__label"></span>
+                     </label>
+                        </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="mdl-card__actions mdl-card--border">
+                    <div class="column-left">
+                        <h style="font-weight: bold;padding-left: -20px;">Fan</h>
+                    </div>
+                    <div class="column-center">
+                        <!--<button  onclick="ajax_post_On1();"  class="mui-btn mui-btn--primary mui-btn--raised">
+                            On
+                        </button></div>
+                    <div class="column-right">
+                        <button   onclick="ajax_post_Off1();" class="mui-btn mui-btn--danger mui-btn--raised">
+                            Off
+                        </button>-->
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" >
+                    <input type="checkbox" id="switch-fan" onclick="toggle_visibility1();" value="off" class="mdl-switch__input">
+                     <span class="mdl-switch__label"></span>
+                     </label>
+                        </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="mdl-card__actions mdl-card--border">
+                    <div class="column-left">
+                        <h style="font-weight: bold;padding-left: -20px;">Air Conditioner</h>
+                    </div>
+                    <div class="column-center">
+                        <!--<button    class="mui-btn mui-btn--primary mui-btn--raised">
+                            On
+                        </button></div>
+                    <div class="column-right">
+                        <button    class="mui-btn mui-btn--danger mui-btn--raised">
+                            Off
+                        </button>-->
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" >
+                    <input type="checkbox" id="switch-2" value="off" class="mdl-switch__input">
+                     <span class="mdl-switch__label"></span>
+                     </label>
+                        </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="mdl-card__actions mdl-card--border">
+                    <div class="column-left">
+                        <h style="font-weight: bold;padding-left: -20px;">Lamp</h>
+                    </div>
+                    <div class="column-center">
+                        <!--<button    class="mui-btn mui-btn--primary mui-btn--raised">
+                            On
+                        </button></div>
+                    <div class="column-right">
+                        <button    class="mui-btn mui-btn--danger mui-btn--raised">
+                            Off
+                        </button>-->
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" >
+                    <input type="checkbox" id="switch-2" value="off" class="mdl-switch__input">
+                     <span class="mdl-switch__label"></span>
+                     </label>
+                        </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="mdl-card__actions mdl-card--border">
+                    <div class="column-left">
+                        <h style="font-weight: bold;padding-left: -20px;">Camera</h>
+                    </div>
+                    <div class="column-center">
+                       <!-- <button    class="mui-btn mui-btn--primary mui-btn--raised">
+                            On
+                        </button></div>
+                    <div class="column-right">
+                        <button    class="mui-btn mui-btn--danger mui-btn--raised">
+                            Off
+                        </button>-->
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" >
+                    <input type="checkbox" id="switch-2" value="off" class="mdl-switch__input">
+                     <span class="mdl-switch__label"></span>
+                     </label>
+                        </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+            <div class="page-content">
+                <div class="container">
+                    <div class="mdl-card__actions mdl-card--border">
+                        <div class="column-left">
+                            <h style="font-weight: bold;padding-left: -20px;">PIR Sensor</h>
+                        </div>
+                        <div class="column-center">
+                          <!--  <button  onclick="ajax_post_SensorOn();"  class="mui-btn mui-btn--primary mui-btn--raised">
+                                On
+                            </button></div>
+                        <div class="column-right">
+                            <button   onclick="ajax_post_SensorOff();" class="mui-btn mui-btn--danger mui-btn--raised">
+                                Off
+                            </button>-->
+                            <!--<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                <input type="checkbox" id="switch-1" value="off" class="mdl-switch__input" checked>
+                <span class="mdl-switch__label"></span>
+                   </label>-->
+                   <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" >
+                    <input type="checkbox" onclick="toggle_visibility2();" id="switch-2" value="off" class="mdl-switch__input">
+                     <span class="mdl-switch__label"></span>
+                     </label>
+                   
+                            </div>
+                    </div>
+                    
+                </div>
+                <div id="container">
+                   <div  id="comment_logs">
+    	            Loading data...
+                    </div>
+                
+
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+            <div class="page-content"><div  id="feeds">
+    	            Loading data...
+                    </div></div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
